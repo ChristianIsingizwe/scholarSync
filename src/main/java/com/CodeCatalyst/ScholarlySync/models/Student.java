@@ -12,33 +12,16 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 @Entity
-@Table(name = "users")
+@Table(name = "students")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Student {
+public class Student extends User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_seq")
-    @SequenceGenerator(name = "student_seq", sequenceName = "student_sequence", allocationSize = 30)
+    @SequenceGenerator(name = "student_seq", sequenceName = "student_seq", allocationSize = 20)
     private Long id;
-
-    @NotNull
-    private String firstName;
-    @NotNull
-    private String lastName;
-    @NotNull
-    private Date dateOfBirth;
-    @NotNull
-    private Gender gender;
-
-    @Column(unique = true)
-    @NotNull
-    @Email
-    private String email;
-
-    @NotNull
-    private String password;
 
     @Column(unique = true)
     private int phoneNumber;
@@ -49,4 +32,5 @@ public class Student {
     @Column(unique = true)
     @NotNull
     private int guardianPhoneNumber;
+
 }
