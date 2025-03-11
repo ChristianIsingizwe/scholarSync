@@ -1,29 +1,27 @@
 package com.CodeCatalyst.ScholarlySync.models;
 
-import jakarta.persistence.Column;
+import com.CodeCatalyst.ScholarlySync.enums.AppealStatus;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Set;
+import org.yaml.snakeyaml.error.Mark;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Class {
+public class Appeal {
 
     @Id
     private Long id;
 
-    @Column(unique = true)
-    private String name;
+    private User student;
+    private Marks mark;
+    private String description;
+    private AppealStatus status;
 
-    @OneToMany(mappedBy = "Class")
-    private Set<User> students;
 }

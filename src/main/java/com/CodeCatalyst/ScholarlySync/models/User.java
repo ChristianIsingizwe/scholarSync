@@ -10,6 +10,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -44,4 +46,11 @@ public class User {
     @NotNull
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @ManyToOne
+    @JoinColumn(name = "class_id")
+    private Class schoolClass;
+
+    @ManyToMany(mappedBy = "teachers")
+    private Set<Course> courses;
 }
