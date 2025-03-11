@@ -1,25 +1,33 @@
 package com.CodeCatalyst.ScholarlySync.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.MappedSuperclass;
+import com.CodeCatalyst.ScholarlySync.enums.Gender;
+import com.CodeCatalyst.ScholarlySync.enums.Role;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
-@MappedSuperclass
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class User {
+
+    @Id
+    @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "user_sequence")
+    @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 30)
+    private Long id;
+
+    @Column
     @NotNull
     private String firstName;
-
+    @Column
     @NotNull
     private String lastName;
-
-    @NotNull
-    private Date dateOfBirth;
-
-    @NotNull
-    private Gender gender;
 
     @Column(unique = true)
     @NotNull
@@ -28,4 +36,12 @@ public class User {
 
     @NotNull
     private String password;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Role role;
 }
