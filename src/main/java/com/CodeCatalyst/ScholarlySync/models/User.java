@@ -2,17 +2,10 @@ package com.CodeCatalyst.ScholarlySync.models;
 
 import com.CodeCatalyst.ScholarlySync.enums.Gender;
 import com.CodeCatalyst.ScholarlySync.enums.Role;
-import com.CodeCatalyst.ScholarlySync.utils.Location;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import java.util.Date;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import lombok.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "users")
@@ -23,17 +16,33 @@ import java.util.Date;
 public class User {
 
     @Id
-    private Long id;
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
+    @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 30)
+    private Long Id;
+
+    @Column(nullable = false)
     private String firstName;
+
+    @Column(nullable = false)
     private String lastName;
+
+    @Column(unique = true, nullable = false)
+    @Email
     private String email;
+
+    @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private Role role;
-    private Date dateOfBirth;
-    @Transient
-    private Location location;
+
+    private LocalDate dateOfBirth;
+
     private Integer phoneNumber;
+
+    @Enumerated(EnumType.STRING)
     private Gender gender;
-    private String schoolClass;
 
 }
