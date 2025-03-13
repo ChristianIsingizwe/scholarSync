@@ -10,6 +10,6 @@ public interface AppealRepository extends JpaRepository<Appeal, Long> {
     List<Appeal> findByCourse_courseId(long courseId);
     List<Appeal> findAll();
     Appeal updateAppealById(long id, Appeal appeal);
-    Appeal save(Appeal appeal);
+    <S extends Appeal> S save(S appeal);
     void deleteAppealById(long id);
 }
