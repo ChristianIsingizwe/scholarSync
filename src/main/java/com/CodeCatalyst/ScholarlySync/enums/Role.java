@@ -4,5 +4,5 @@ public enum Role {
     STUDENT,
     INSTRUCTOR,
     DISCIPLINE_STAFF,
-    PRINCIPLE
+    PRINCIPAL
 }

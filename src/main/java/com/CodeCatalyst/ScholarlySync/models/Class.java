@@ -24,6 +24,6 @@ public class Class {
     @Column(unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "Class")
+    @OneToMany(mappedBy = "schoolClass")
     private Set<User> students;
 }
