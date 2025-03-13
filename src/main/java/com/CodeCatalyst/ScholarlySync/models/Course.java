@@ -1,14 +1,15 @@
 package com.CodeCatalyst.ScholarlySync.models;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
-
 @Entity
+@Table(name = "courses")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,17 +17,6 @@ import java.util.Set;
 public class Course {
     @Id
     private Long id;
-    private String name;
-    private String description;
-
-    @ManyToMany
-    @JoinTable(
-            name = "teacher_courses",
-            joinColumns = @JoinColumn(name = "course_id"),
-            inverseJoinColumns = @JoinColumn(name = "teacher_id")
-    )
-    private Set<User> teachers;
-
-    @OneToMany(mappedBy = "course")
-    private Set<Marks> marks;
+    private String courseName;
+    private String teacher_id;
 }
