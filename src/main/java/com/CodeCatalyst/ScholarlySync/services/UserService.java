@@ -3,11 +3,8 @@ package com.CodeCatalyst.ScholarlySync.services;
 import com.CodeCatalyst.ScholarlySync.models.User;
 import com.CodeCatalyst.ScholarlySync.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 public class UserService {
@@ -16,11 +13,6 @@ public class UserService {
     @Autowired
     public UserService(UserRepository userRepository){
         this.userRepository = userRepository;
-    }
-
-    public List<User> findAll(Long id, int pageSize){
-        Pageable pageable = PageRequest.of(0, pageSize);
-        return userRepository.findByIdGreaterThanOrderByIdDesc(id, pageable);
     }
 
     public User findById(Long id) {
